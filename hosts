@@ -1,0 +1,14 @@
+#[dpdk1]
+#192.168.33.11
+
+#[dpdk2]
+#192.168.33.12
+
+[pktgen]
+127.0.0.1
+
+[all:vars]
+ansible_ssh_port=22
+ansible_ssh_user=dpdk-user
+ansible_ssh_pass=dpdk3388
+ansible_sudo_pass=dpdk3388
