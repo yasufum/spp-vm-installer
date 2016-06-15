@@ -21,3 +21,7 @@
 
 - name: create install_dir
   file: path={{ install_dir }} state=directory
+
+- name: put .vimrc
+  copy: src=templates/vimrc dest={{ ansible_env.HOME }}/.vimrc
+        mode=664 force=yes
