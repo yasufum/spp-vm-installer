@@ -1,6 +1,6 @@
 ## Install SPP with ansible
 
-This program setup following tools with ansible.
+This program is for setup following tools on VMs with ansible.
 
 - DPDK 16.04 
 - SPP
@@ -28,11 +28,14 @@ other tools.
 
 #### 2.1. Understand roles
 
-First of all, edit "hosts" to register IP addresses under the roles.
+First of all, edit "hosts" to register IP addresses of VMs under the roles.
 
 There are three two roles in "hosts", common, qemu and pktgen.
 Role is a kind of group of installation processes.
 Each of processes are defined in "roles/[role_name]/tasks/main.yml".
+
+Use common role if you want to install dpdk only.
+On the other hand, use spp role.
 
 ##### (1) common role
 
@@ -77,21 +80,23 @@ $ rake
 
 #### 2.4. Run DPDK applications.
 
-Login as dpdk, then compile and run applications as following.
+Login as dpdk, then compile and run applications.
+Following example is for running helloworld example.
+
 ```
 $ ssh dpdk@localhost
 Welcome to Ubuntu 16.04.4 LTS (GNU/Linux 4.2.0-35-generic x86_64)
 
  * Documentation:  https://help.ubuntu.com/
 Last login: Sun May  8 01:38:50 2016 from 192.168.33.1
-vagrant@vagrant:~$ cd dpdk/examples/helloworld/
-vagrant@vagrant:~/dpdk/examples/helloworld$
-vagrant@vagrant:~/dpdk/examples/helloworld$ make
+dpdk@dpdk-client:~$ cd dpdk/examples/helloworld/
+dpdk@dpdk-client:~/dpdk/examples/helloworld$
+dpdk@dpdk-client:~/dpdk/examples/helloworld$ make
   CC main.o
   LD helloworld
   INSTALL-APP helloworld
   INSTALL-MAP helloworld.map
-vagrant@vagrant:~/dpdk/examples/helloworld$ sudo ./build/helloworld -c f -n 4
+dpdk@dpdk-client:~/dpdk/examples/helloworld$ sudo ./build/helloworld -c f -n 4
 EAL: Detected 4 lcore(s)
 EAL: Probing VFIO support...
 EAL: VFIO support initialized
