@@ -1,15 +1,14 @@
-## Install DPDK and pktgen with ansible
+## Install SPP with ansible
 
 This program setup following tools with ansible.
 
 - DPDK 16.04 
-- pktge-dpdk 3.0.02
-- qemu-2.3.0 (specialized for dpdk vhost)
+- SPP
 
 
 ### 1. Installation
 
-You have to install ansible to run ansible-playbook which is a instruction for building DPDK and other tools.
+You have to install ansible on host to run ansible-playbook which is a instruction for building DPDK and other tools.
 
 #### (1) ansible
 
@@ -40,21 +39,16 @@ Each of processes are defined in "roles/[role_name]/tasks/main.yml".
 common is a basic role and applied for all of roles.
 If you run qemu's task, common's task is run before qemu's.
 
-##### (2) qemu role
+##### (2) spp role
 
 First, install DPDK and other tools with common role.
-Then nstall qemu for running VMs.
-
-
-##### (3) pktgen role
-
-First, install DPDK and other tools with common role.
-Then install pktgen.
+Then nstall spp.
 
 
 #### 2.2. Add user
 
-On each of ansible-clients, add user account as defined in hosts.
+On each of ansible-clients, add user account as defined in hosts if you don't have
+an account for spp on remote.
 Then make it as sudoer.
 
 [NOTE] Add http_proxy in .bashrc if you are in proxy environment.
@@ -70,7 +64,6 @@ Delete account by userdel if it's no need. You should add -r option to delete ho
 ```
 $ sudo userdel -r dpdk
 ```
-
   
 
 #### 2.3. Run ansible-playbook.
@@ -120,39 +113,6 @@ hello from core 3
 hello from core 0
 ```
 
-#### (5) Run pktgen-dpdk.
-Login h3 (if you don't change default configuration) and move to pktgen's directory.
-```
-$ ssh dpdk@localhost
-Welcome to Ubuntu 16.04.4 LTS (GNU/Linux 4.2.0-35-generic x86_64)
-
- * Documentation:  https://help.ubuntu.com/
-Last login: Sun May  8 01:44:03 2016 from 10.0.2.2
-vagrant@vagrant:~$ ls
-do_after_reboot.sh  dpdk  install.sh  netsniff-ng  pktgen-dpdk
-vagrant@vagrant:~$ cd pktgen-dpdk/
-```
-
-Run pktgen located on $HOME/pktgen-dpdk/app/app/x86_64-native-linuxapp-gcc/pktgen.
-You can run it directory, but it better to use `doit` script.
-```
-vagrant@vagrant:~/pktgen-dpdk$ sudo -E ./doit
-```
-
-if you change options for pktgen, edit `doit` script. Please refer to pktgen-dpdk's [README](http://dpdk.org/browse/apps/pktgen-dpdk/tree/README.md) for details.
-```
-
-dpdk_opts="-c 3  -n 2 --proc-type auto --log-level 7"
-#dpdk_opts="-l 18-26 -n 3 --proc-type auto --log-level 7 --socket-mem 256,256 --file-prefix pg"
-pktgen_opts="-T -P"
-#port_map="-m [19:20].0 -m [21:22].1 -m [23:24].2 -m [25:26].3"
-port_map="-m [0:1].0 -m [2:3].1"
-#port_map="-m [2-4].0 -m [5-7].1"
-#load_file="-f themes/black-yellow.theme"
-load_file="-f themes/white-black.theme"
-#black_list="-b 06:00.0 -b 06:00.1 -b 08:00.0 -b 08:00.1 -b 09:00.0 -b 09:00.1 -b 83:00.1"
-black_list=""
-```
 
 ### Status
 This program is under construction.
