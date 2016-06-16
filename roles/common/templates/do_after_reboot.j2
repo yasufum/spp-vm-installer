@@ -1,8 +1,6 @@
 #!/bin/sh
 
-export http_proxy={{ http_proxy }}
-export RTE_SDK={{ dpdk_dir }}
-export RTE_TARGET={{ dpdk_target }}
+source env.sh
 
 echo "Setup port for dpdk."
 sudo mount -t hugetlbfs nodev /mnt/huge
