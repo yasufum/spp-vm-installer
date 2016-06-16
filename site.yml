@@ -7,10 +7,11 @@
   vars:
     proxy_env:
       http_proxy: http://proxy-bcp.ecl.ntt.co.jp:20066
+      https_proxy: http://proxy-bcp.ecl.ntt.co.jp:20066
     nr_hugepages: 2048
     uname_r: 4.4.0-22-generic
     install_dir: "{{ ansible_env.HOME }}/dpdk-home"
-    spp_dir: "{{ install_dir }}/spp"
+    dpdk_dir: "{{ install_dir }}/dpdk"
     dpdk_target: x86_64-ivshmem-linuxapp-gcc
   roles:
     - common
@@ -21,6 +22,7 @@
   vars:
     proxy_env:
       http_proxy: http://proxy-bcp.ecl.ntt.co.jp:20066
+      https_proxy: http://proxy-bcp.ecl.ntt.co.jp:20066
     install_dir: "{{ ansible_env.HOME }}/dpdk-home"
     spp_dir: "{{ install_dir }}/spp"
     dpdk_target: x86_64-ivshmem-linuxapp-gcc
