@@ -1,9 +1,11 @@
 ---
 - name: get neobundle
   command: wget https://raw.githubusercontent.com/Shougo/neobundle.vim/master/bin/install.sh
+  environment: {{ proxy_env }}
 
 - name: install neobundle
   command: sh {{ ansible_env.HOME }}/install.sh
+  environment: {{ proxy_env }}
 
 - name: remove install.sh of neobundle
   command: rm {{ ansible_env.HOME }}/install.sh

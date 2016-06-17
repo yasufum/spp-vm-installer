@@ -2,22 +2,27 @@
 - name: install git 
   become: yes
   apt: name=git state=present update_cache=yes
+  environment: {{ proxy_env }}
 
 - name: install vim
   become: yes
   apt: name=vim state=present
+  environment: {{ proxy_env }}
 
 #- name: install emacs
 #  become: yes
 #  apt: name=emacs state=present
+#  environment: {{ proxy_env }}
 
 - name: install curl
   become: yes
   apt: name=curl state=present
+  environment: {{ proxy_env }}
 
 - name: install wget
   become: yes
   apt: name=wget state=present
+  environment: {{ proxy_env }}
 
 - name: create install_dir
   file: path={{ install_dir }} state=directory
