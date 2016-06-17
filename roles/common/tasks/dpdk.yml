@@ -2,22 +2,22 @@
 - name: install libarchive-dev
   become: yes
   apt: pkg=libarchive-dev update_cache=no state=present
-  environment: {{ proxy_env }}
+  environment: "{{ proxy_env }}"
 
 - name: install build-essential
   become: yes
   apt: pkg=build-essential update_cache=no state=present
-  environment: {{ proxy_env }}
+  environment: "{{ proxy_env }}"
 
 - name: install linux-headers
   become: yes
   apt: pkg=linux-headers-{{ uname_r }} update_cache=no state=present
-  environment: {{ proxy_env }}
+  environment: "{{ proxy_env }}"
 
 - name: get dpdk
   git: repo=http://dpdk.org/git/dpdk
        dest={{ dpdk_dir }}
-  environment: {{ proxy_env }}
+  environment: "{{ proxy_env }}"
 
 - name: install dpdk
   command: make install T={{ dpdk_target }} chdir={{ dpdk_dir }}
