@@ -15,7 +15,7 @@ sudo modprobe vfio-pci
 script=${RTE_SDK}/tools/dpdk_nic_bind.py
 opt="--bind=uio_pci_generic"
 
-for eth in ${interfaces}
+for eth in {{ interfaces }}
 do
   sudo ifconfig ${eth} down
   echo python ${script} ${opt} ${eth} 
