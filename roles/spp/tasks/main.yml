@@ -1,2 +1,3 @@
 ---
+- include: hugepage-setup.yml
 - include: spp.yml
