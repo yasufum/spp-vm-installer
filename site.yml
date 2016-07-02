@@ -20,6 +20,8 @@
   hosts: spp 
   remote_user: dpdk
   vars:
+    http_proxy: ""
+    https_proxy: ""
     install_dir: "{{ ansible_env.HOME }}/dpdk-home"
     nr_hugepages: 2048
     uname_r: 4.4.0-22-generic
