@@ -1,19 +1,21 @@
 ## Install SPP with ansible
 
-This program is for setup following tools on VMs with ansible.
+This program is an ansible script for setup SPP on VM.
 
-- DPDK 16.04 
-- SPP
+- DPDK v16.07 
+- SPP v16.07
 
 
 ### 1. Installation
 
-You have to install ansible on host to run ansible-playbook which is a instruction for building DPDK and other tools.
+You have to install ansible on host to run ansible-playbook
+which is a instruction for building DPDK and other tools.
 
 #### (1) ansible
 
-Install ansible  >= 2.0 by following this [instruction](http://docs.ansible.com/ansible/intro_installation.html#installation).
-I only tested version 2.0.1.0 but other versions might work.
+Install ansible  >= 2.0 by following this
+[instruction](http://docs.ansible.com/ansible/intro_installation.html#installation).
+I've only tested version 2.0.1.0 but other versions might work.
 
 #### (2) ssh
 
@@ -78,49 +80,10 @@ or use rake if you installed it.
 $ rake
 ```
 
-#### 2.4. Run DPDK applications.
-
-Login as dpdk, then compile and run applications.
-Following example is for running helloworld example.
-
-```
-$ ssh dpdk@localhost
-Welcome to Ubuntu 16.04.4 LTS (GNU/Linux 4.2.0-35-generic x86_64)
-
- * Documentation:  https://help.ubuntu.com/
-Last login: Sun May  8 01:38:50 2016 from 192.168.33.1
-dpdk@dpdk-client:~$ cd dpdk/examples/helloworld/
-dpdk@dpdk-client:~/dpdk/examples/helloworld$
-dpdk@dpdk-client:~/dpdk/examples/helloworld$ make
-  CC main.o
-  LD helloworld
-  INSTALL-APP helloworld
-  INSTALL-MAP helloworld.map
-dpdk@dpdk-client:~/dpdk/examples/helloworld$ sudo ./build/helloworld -c f -n 4
-EAL: Detected 4 lcore(s)
-EAL: Probing VFIO support...
-EAL: VFIO support initialized
-EAL: PCI device 0000:00:03.0 on NUMA socket -1
-EAL:   probe driver: 8086:100e rte_em_pmd
-EAL: PCI device 0000:00:08.0 on NUMA socket -1
-EAL:   probe driver: 8086:100e rte_em_pmd
-EAL: PCI device 0000:00:09.0 on NUMA socket -1
-EAL:   probe driver: 8086:100e rte_em_pmd
-EAL: PCI device 0000:00:0a.0 on NUMA socket -1
-EAL:   probe driver: 8086:100e rte_em_pmd
-EAL: PCI device 0000:00:10.0 on NUMA socket -1
-EAL:   probe driver: 8086:100e rte_em_pmd
-EAL: PCI device 0000:00:11.0 on NUMA socket -1
-EAL:   probe driver: 8086:100e rte_em_pmd
-hello from core 1
-hello from core 2
-hello from core 3
-hello from core 0
-```
-
 
 ### Status
 This program is under construction.
+
 
 ### License
 This program is released under the MIT license:
