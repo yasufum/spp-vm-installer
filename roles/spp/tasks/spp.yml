@@ -1,32 +1,8 @@
 ---
-- name: create install_dir
-  file: path={{ install_dir }} state=directory
-
-- name: put do_after_reboot.sh
-  template: src=templates/do_after_reboot.j2 dest={{ install_dir }}/do_after_reboot.sh mode=775
-
-- name: put env.sh
-  template: src=templates/env_dpdk.j2 dest={{ install_dir }}/env.sh mode=775
-
-- name: install libarchive-dev
-  become: yes
-  apt: pkg=libarchive-dev update_cache=no state=present
-
-- name: install build-essential
-  become: yes
-  apt: pkg=build-essential update_cache=no state=present
-
-- name: install linux-headers
-  become: yes
-  apt: pkg=linux-headers-{{ uname_r }} update_cache=no state=present
-
 - name: get spp
-  git: repo=http://dpdk.org/git/apps/spp
-       dest={{ spp_dir }}
-
-- name: install dpdk in spp
-  command: make install T={{ dpdk_target }} chdir={{ spp_dir }}
+  git: repo={{ spp_repo }}
+  dest={{ spp_dir }}
+  version={{ spp_ver }}
 
 - name: make spp
-  command: make RTE_SDK={{ spp_dir }} RTE_TARGET={{ dpdk_target }} -C examples/multi_process/patch_panel
-           chdir={{ spp_dir }}
+  command: make RTE_SDK={{ dpdk_dir }} RTE_TARGET={{ dpdk_target }} chdir={{ spp_dir }}
