@@ -3,9 +3,3 @@
 
 [spp]
 192.168.122.50
-
-[all:vars]
-ansible_ssh_port=22
-ansible_ssh_user=dpdk
-ansible_ssh_pass=dpdk3388
-ansible_sudo_pass=dpdk3388

@@ -19,10 +19,3 @@
   become: yes
   apt: name=wget state=present
 
-- name: install PyYAML
-  become: yes
-  apt: name=python-yaml state=present
-
-- name: put .vimrc
-  copy: src=templates/vimrc dest={{ ansible_env.HOME }}/.vimrc
-        mode=664 force=yes

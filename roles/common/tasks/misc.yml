@@ -13,3 +13,7 @@
 
 - name: put .tmux.conf
   copy: src=templates/tmux.conf dest={{ ansible_env.HOME }}/.tmux.conf mode=664
+
+- name: install PyYAML
+  become: yes
+  apt: name=python-yaml state=present
