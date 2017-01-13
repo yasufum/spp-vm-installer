@@ -1,0 +1,6 @@
+---
+# all
+
+ansible_sudo_pass: dpdk3388
+dein_home: "{{ ansible_env.HOME }}/dein"
+http_proxy: "http://proxy-bcp.ecl.ntt.co.jp:20066"

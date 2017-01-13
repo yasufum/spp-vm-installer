@@ -4,32 +4,17 @@
 - name: apply all base packages
   hosts: all
   remote_user: dpdk
-  vars:
-    http_proxy: ""
-    https_proxy: ""
-    #install_dir: "{{ ansible_env.HOME }}/dpdk-home"
-    #dpdk_dir: "{{ install_dir }}/dpdk"
-    #dpdk_target: x86_64-ivshmem-linuxapp-gcc
   roles:
     - common
   environment:
-    http_proxy: ""
-    https_proxy: ""
+    http_proxy: "{{ http_proxy }}"
+    https_proxy: "{{ http_proxy }}"
 
 - name: install spp
   hosts: spp 
   remote_user: dpdk
-  vars:
-    http_proxy: ""
-    https_proxy: ""
-    install_dir: "{{ ansible_env.HOME }}/dpdk-home"
-    nr_hugepages: 2048
-    uname_r: 4.4.0-22-generic
-    spp_dir: "{{ install_dir }}/spp"
-    dpdk_target: x86_64-ivshmem-linuxapp-gcc
-    interfaces: "ens5 ens6"
   roles:
     - spp
   environment:
-    http_proxy: ""
-    https_proxy: ""
+    http_proxy: "{{ http_proxy }}"
+    https_proxy: "{{ http_proxy }}"
