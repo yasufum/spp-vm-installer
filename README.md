@@ -20,10 +20,10 @@ I've only tested version 2.0.1.0 but other versions might work.
 #### (2) ssh
 
 Ansible uses ssh to install tools on remote server,
-so you have to ssh client into ansible-server in which ansible is installed.
+so you have to install ssh client into ansible-server in which ansible run.
+If you use ssh password to login ansible-clients, you have to install `sshpass`.
 
-You also have to install sshd into ansible-clients to install DPDK or
-other tools.
+You also have to install sshd into ansible-clients.
 
 
 ### 2. How to use
@@ -41,13 +41,16 @@ On the other hand, use spp role.
 
 ##### (1) common role
 
-common is a basic role and applied for all of roles.
+`common` is a basic role and applied for all of roles.
 If you run qemu's task, common's task is run before qemu's.
 
-##### (2) spp role
+##### (2) dpdk role
 
-First, install DPDK and other tools with common role.
-Then nstall spp.
+Install DPDK.
+
+##### (3) spp role
+
+Install SPP.
 
 
 #### 2.2. Add user
@@ -71,7 +74,16 @@ $ sudo userdel -r dpdk
 ```
   
 
-#### 2.3. Run ansible-playbook.
+#### 2.3. Assing network interfaces
+
+After spp is installed, you find `${HOME}/dpdk-home/do_after_reboot.sh` which is setting up
+DPDK's environments.
+This script includes NIC binding with `dpdk-devbind.py`, so you have to check interfaces
+used by DPDK inside VM.
+
+Run `ifconfig -a` to find interfaces and update `dpdk_interfaces` in `group_vars/dpdk`.
+
+#### 2.4. Run ansible-playbook.
 ```
 $ ansible-playbook -i hosts site.yml
 ```

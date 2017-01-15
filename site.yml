@@ -14,6 +14,15 @@
   hosts: spp 
   remote_user: dpdk
   roles:
+    - dpdk 
+  environment:
+    http_proxy: "{{ http_proxy }}"
+    https_proxy: "{{ http_proxy }}"
+
+- name: install spp
+  hosts: spp 
+  remote_user: dpdk
+  roles:
     - spp
   environment:
     http_proxy: "{{ http_proxy }}"
