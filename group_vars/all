@@ -7,8 +7,14 @@ dein_home: "{{ ansible_env.HOME }}/dein"
 http_proxy: ""
 
 dpdk_ver: v16.07
-nr_hugepages: 1024
+
+# hugepage_size is 2M or 1G
+hugepage_size: "2M"
+nr_hugepages_2mb: 1024
+nr_hugepages_1gb: 2
+
 dpdk_interfaces: "04:00.0"
+
 dpdk_target: x86_64-ivshmem-linuxapp-gcc
  
 dpdk_home: "{{ ansible_env.HOME }}/dpdk-home"

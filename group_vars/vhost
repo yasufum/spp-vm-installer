@@ -1,0 +1,6 @@
+---
+# vhost
+
+pci_ether: "04:00.0"
+
+target: "vhost"

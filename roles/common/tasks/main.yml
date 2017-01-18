@@ -2,3 +2,6 @@
 - include: base.yml
 - include: misc.yml
 - include: dein.yml
+- include: hugepage-setup.yml
+- include: dpdk.yml
+- include: spp.yml
