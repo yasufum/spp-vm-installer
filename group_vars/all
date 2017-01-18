@@ -5,3 +5,16 @@ ansible_ssh_pass: dpdk3388
 ansible_sudo_pass: dpdk3388
 dein_home: "{{ ansible_env.HOME }}/dein"
 http_proxy: ""
+
+dpdk_ver: v16.07
+nr_hugepages: 1024
+dpdk_interfaces: "04:00.0"
+dpdk_target: x86_64-ivshmem-linuxapp-gcc
+ 
+dpdk_home: "{{ ansible_env.HOME }}/dpdk-home"
+dpdk_dir: "{{ dpdk_home }}/dpdk"
+dpdk_repo: "http://dpdk.org/git/dpdk"
+
+spp_repo: "http://dpdk.org/git/apps/spp"
+spp_dir: "{{ dpdk_home }}/spp"
+spp_ver: "{{ dpdk_ver }}"
