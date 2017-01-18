@@ -2,8 +2,7 @@
 # dpdk
  
 dpdk_ver: v16.07
-hugepagesz: 2M
-nr_hugepages: 2048
+nr_hugepages: 1024
 dpdk_interfaces: "04:00.0"
 dpdk_target: x86_64-ivshmem-linuxapp-gcc
  
