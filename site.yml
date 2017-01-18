@@ -10,7 +10,7 @@
     http_proxy: "{{ http_proxy }}"
     https_proxy: "{{ http_proxy }}"
 
-- name: install spp
+- name: install dpdk
   hosts: spp 
   remote_user: dpdk
   roles:

@@ -1,21 +1,10 @@
 ---
-- name: install git 
+- name: install git and etc
   become: yes
-  apt: name=git state=present update_cache=yes
-
-- name: install vim
-  become: yes
-  apt: name=vim state=present
-
-#- name: install emacs
-#  become: yes
-#  apt: name=emacs state=present
-
-- name: install curl
-  become: yes
-  apt: name=curl state=present
-
-- name: install wget
-  become: yes
-  apt: name=wget state=present
-
+  apt: name={{ item }} state=present update_cache=yes
+  with_items:
+    - git
+    - vim
+    - curl
+    - wget
+    #- emacs

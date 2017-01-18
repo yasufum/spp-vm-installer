@@ -1,19 +1,12 @@
 ---
-- name: install ruby 
+- name: install ruby and etc
   become: yes
-  apt: name=ruby state=present
-
-- name: install nmon
-  become: yes
-  apt: name=nmon state=present
-
-- name: install tmux
-  become: yes
-  apt: name=tmux state=present
+  apt: name={{ item }}state=present
+  with_items:
+    - ruby
+    - nmon
+    - tmux
+    - python-yaml
 
 - name: put .tmux.conf
   copy: src=templates/tmux.conf dest={{ ansible_env.HOME }}/.tmux.conf mode=664
-
-- name: install PyYAML
-  become: yes
-  apt: name=python-yaml state=present
