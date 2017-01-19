@@ -10,20 +10,20 @@
     http_proxy: "{{ http_proxy }}"
     https_proxy: "{{ http_proxy }}"
 
-- name: install dpdk
-  hosts: spp 
+- name: setup ring env
+  hosts: ring 
   remote_user: dpdk
   roles:
-    - dpdk 
+    - ring
   environment:
     http_proxy: "{{ http_proxy }}"
     https_proxy: "{{ http_proxy }}"
 
-- name: install spp
-  hosts: spp 
+- name: setup vhost env
+  hosts: vhost 
   remote_user: dpdk
   roles:
-    - spp
+    - vhost
   environment:
     http_proxy: "{{ http_proxy }}"
     https_proxy: "{{ http_proxy }}"
