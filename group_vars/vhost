@@ -1,6 +1,5 @@
 ---
 # vhost
 
-pci_ether: "04:00.0"
+dpdk_nic: "04:00.0"
 
-target: "vhost"
