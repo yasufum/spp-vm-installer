@@ -10,7 +10,7 @@ dpdk_ver: v16.07
 
 # hugepage_size is 2M or 1G
 hugepage_size: "2M"
-nr_hugepages_2mb: 1024
+nr_hugepages_2mb: 512
 nr_hugepages_1gb: 2
 
 dpdk_interfaces: "04:00.0"

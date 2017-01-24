@@ -8,10 +8,10 @@ echo "Setup port for dpdk."
 #sudo sh -c "echo $HUGEPAGES > /sys/kernel/mm/hugepages/hugepages-2048kB/nr_hugepages"
 
 # modprobe
-echo sudo modprobe uio_pci_generic 
 sudo modprobe uio_pci_generic 
-echo sudo modprobe vfio-pci
+echo sudo modprobe uio_pci_generic 
 sudo modprobe vfio-pci
+echo sudo modprobe vfio-pci
 
 # setup vars for nic bind.
 script=${RTE_SDK}/tools/dpdk-devbind.py
