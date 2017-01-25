@@ -1,0 +1,7 @@
+---
+- name: add sudoer entry
+  become: yes
+  template: src=templates/dpdk.j2
+            dest=/etc/sudoers.d/dpdk
+            mode=0400
+

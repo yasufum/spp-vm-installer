@@ -1,6 +1,7 @@
 ---
 # all
 
+user_name: dpdk
 ansible_ssh_pass: dpdk3388
 ansible_sudo_pass: dpdk3388
 dein_home: "{{ ansible_env.HOME }}/dein"

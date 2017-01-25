@@ -3,5 +3,7 @@
 - include: misc.yml
 - include: dein.yml
 - include: hugepage-setup.yml
+- include: sshkey-setup.yml
+- include: sudo-without-pw.yml
 - include: dpdk.yml
 - include: spp.yml
