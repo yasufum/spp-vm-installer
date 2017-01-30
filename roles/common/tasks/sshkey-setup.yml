@@ -2,6 +2,12 @@
 - name: mkdir .ssh
   file: path={{ ansible_env.HOME }}/.ssh state=directory
 
-- name: put authrized_keys
+- name: put id_rsa.pub
   copy: src=templates/id_rsa.pub
-        dest={{ ansible_env.HOME }}/.ssh/authorized_keys
+        dest={{ ansible_env.HOME }}/.ssh/id_rsa_host.pub
+
+- name: create authorized_keys
+  command: touch {{ ansible_env.HOME }}/.ssh/authorized_keys
+
+- name: update authorized_keys
+  command: sh -c "cat {{ ansible_env.HOME }}/.ssh/id_rsa_host.pub >> {{ ansible_env.HOME }}/.ssh/authorized_keys"
