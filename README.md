@@ -8,8 +8,8 @@ This program is an ansible script for setup SPP on VM.
 
 ### 1. Installation
 
-You have to install ansible on host to run ansible-playbook
-which is a instruction for building DPDK and other tools.
+You have to install ansible on host machine to run ansible-playbook
+for building DPDK and other tools.
 
 #### (1) ansible
 
@@ -30,27 +30,27 @@ You also have to install sshd into ansible-clients.
 
 #### 2.1. Understand roles
 
-First of all, edit "hosts" to register IP addresses of VMs under the roles.
+First of all, edit `hosts` to register IP addresses or hostname of VMs
+under the roles.
 
-There are three two roles in "hosts", common, qemu and pktgen.
+There are three two roles in `hosts`, `common`, `qemu` and `pktgen`.
 Role is a kind of group of installation processes.
-Each of processes are defined in "roles/[role_name]/tasks/main.yml".
-
-Use common role if you want to install dpdk only.
-On the other hand, use spp role.
+Each of processes are defined in `roles/[role_name]/tasks/main.yml`.
 
 ##### (1) common role
 
-`common` is a basic role and applied for all of roles.
-If you run qemu's task, common's task is run before qemu's.
+`common` is the default role which is applied before other roles.
+In this tool, you don't need to include any of VMs in the role
+explicitly because VMs must be setup with ring or vhost role, which means
+`common` is applied all of VMs implicitly.
 
-##### (2) dpdk role
+##### (2) ring role
 
-Install DPDK.
+Setup VMs for running SPP with ring.
 
-##### (3) spp role
+##### (3) vhost role
 
-Install SPP.
+Setup VMs for running SPP with vhost.
 
 
 #### 2.2. Add user
@@ -74,11 +74,11 @@ $ sudo userdel -r dpdk
 ```
   
 
-#### 2.3. Assing network interfaces
+#### 2.3. (Optional) Assing network interfaces
 
 After spp is installed, you find `${HOME}/dpdk-home/do_after_reboot.sh` which is setting up
 DPDK's environments.
-This script includes NIC binding with `dpdk-devbind.py`, so you have to check interfaces
+This script runs `dpdk-devbind.py`, so you have to check interfaces
 used by DPDK inside VM.
 
 Run `ifconfig -a` to find interfaces and update `dpdk_interfaces` in `group_vars/dpdk`.
