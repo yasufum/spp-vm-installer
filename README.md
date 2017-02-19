@@ -19,7 +19,7 @@ I've only tested version 2.0.1.0 but other versions might work.
 
 #### (2) ssh
 
-Ansible uses ssh to install tools on remote server,
+Ansible uses ssh to install packages on remote machines,
 so you have to install ssh client into ansible-server in which ansible run.
 If you use ssh password to login ansible-clients, you have to install `sshpass`.
 
@@ -29,7 +29,7 @@ You also have to install sshd into ansible-clients.
 ### 2. How to use
 
 Run `rake` or `ansible-playbook` directly after [Setup](#3. Setup) in section 3.
-If you use `ansible-playbook`, you have to setup sshkey and http_proxy yourself.
+If you use `ansible-playbook`, you have to setup sshkey and http_proxy by yourself.
 
 ```
 $ rake
@@ -47,7 +47,7 @@ $ ansible-playbook -i hosts site.yml
 First of all, edit `hosts` to register IP addresses or hostname of VMs
 under the roles.
 
-There are three two roles in `hosts`, `common`, `qemu` and `pktgen`.
+There are three two roles in `hosts`, `common`, `ring` and `vhost`.
 Role is a kind of group of installation processes.
 Each of processes are defined in `roles/[role_name]/tasks/main.yml`.
 
