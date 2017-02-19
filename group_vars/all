@@ -4,8 +4,11 @@
 user_name: dpdk
 ansible_ssh_pass: dpdk3388
 ansible_sudo_pass: dpdk3388
-dein_home: "{{ ansible_env.HOME }}/dein"
 http_proxy: "http://proxy-bcp.ecl.ntt.co.jp:20066"
+
+dein_home: "{{ ansible_env.HOME }}/dein"
+dein_repo: "https://github.com/Shougo/dein.vim.git"
+dein_dir: "{{ ansible_env.HOME }}/dein.vim"
 
 dpdk_ver: v16.07
 
@@ -18,6 +21,7 @@ dpdk_interfaces: "04:00.0"
 
 dpdk_target: x86_64-ivshmem-linuxapp-gcc
  
+
 dpdk_home: "{{ ansible_env.HOME }}/dpdk-home"
 dpdk_dir: "{{ dpdk_home }}/dpdk"
 dpdk_repo: "http://dpdk.org/git/dpdk"
