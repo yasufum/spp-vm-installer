@@ -28,7 +28,21 @@ You also have to install sshd into ansible-clients.
 
 ### 2. How to use
 
-#### 2.1. Understand roles
+Run `rake` or `ansible-playbook` directly after [Setup](#3. Setup) in section 3.
+If you use `ansible-playbook`, you have to setup sshkey and http_proxy yourself.
+
+```
+$ rake
+
+or
+
+$ ansible-playbook -i hosts site.yml
+```
+
+
+### 3. Setup
+
+#### 3.1. Understand roles
 
 First of all, edit `hosts` to register IP addresses or hostname of VMs
 under the roles.
@@ -53,13 +67,11 @@ Setup VMs for running SPP with ring.
 Setup VMs for running SPP with vhost.
 
 
-#### 2.2. Add user
+#### 3.2. Add user
 
-On each of ansible-clients, add user account as defined in hosts if you don't have
-an account for spp on remote.
-Then make it as sudoer.
-
-[NOTE] Add http_proxy in .bashrc if you are in proxy environment.
+This playbook assumes that user account defined in `group_vars/all` is already exists
+in each of ansible-clients.
+If you don't have, add user account as sudoer. 
 
 ```
 $ sudo adduser dpdk
@@ -67,30 +79,43 @@ $ sudo adduser dpdk
 $ sudo gpasswd -a dpdk sudo
 ```
 
-Delete account by userdel if it's no need. You should add -r option to delete home directory.
+You can delete account by userdel if it's no need. You should add -r option to delete home directory.
 
 ```
 $ sudo userdel -r dpdk
 ```
-  
 
-#### 2.3. (Optional) Assing network interfaces
+#### 3.3. SSH key
 
-After spp is installed, you find `${HOME}/dpdk-home/do_after_reboot.sh` which is setting up
-DPDK's environments.
-This script runs `dpdk-devbind.py`, so you have to check interfaces
-used by DPDK inside VM.
+[NOTE] You can skip it if you use `rake`.
 
-Run `ifconfig -a` to find interfaces and update `dpdk_interfaces` in `group_vars/dpdk`.
+Put ssh key as `roles/common/templates/id_rsa.pub` for login VMs.
 
-#### 2.4. Run ansible-playbook.
+If you don't have the key, generate it as following.
+
+```sh
+$ ssh-keygen -t rsa
+$ cp $HOME/.ssh/id_rsa.pub ./roles/common/templates/id_rsa.pub
 ```
-$ ansible-playbook -i hosts site.yml
-```
-or use rake if you installed it.
-```
-$ rake
-```
+
+#### 3.4. (Optional) Proxy setting
+
+[NOTE] You can skip it if you use `rake`.
+
+You need to set http_proxy in you are in proxy environment for downloading packages
+while installation.
+
+Proxy setting is described in `group_vars/all`.
+
+
+#### 3.5. (Optional) Assing network interfaces
+
+After SPP is installed, you find `${HOME}/dpdk-home/do_after_reboot.sh` in vhost VMs.
+`do_after_reboot.sh` is a setup script for DPDK's environments.
+It runs `dpdk-devbind.py` with intarfaces described in it.
+
+Default value for vhost interface `dpdk_interfaces: "04:00.0"` is defined in `group_vars/all`.
+If you need to change this value, edit `group_vars/all` before installation or `do_after_reboot.sh` inside VMs after installation.
 
 
 ### Status

@@ -4,7 +4,7 @@
 user_name: dpdk
 ansible_ssh_pass: dpdk3388
 ansible_sudo_pass: dpdk3388
-http_proxy: "http://proxy-bcp.ecl.ntt.co.jp:20066"
+http_proxy: 
 
 dein_home: "{{ ansible_env.HOME }}/dein"
 dein_repo: "https://github.com/Shougo/dein.vim.git"
