@@ -18,6 +18,7 @@ end
 
 
 # Default task
+desc "Run tasks for install"
 task :default => [
   :confirm_sshkey,
   :confirm_http_proxy,
@@ -27,7 +28,7 @@ task :default => [
 end
 
 
-# Check if sshkey exists and copy from your $HOME/.ssh/id_rsa.pub
+desc "Check if sshkey exists and copy from your $HOME/.ssh/id_rsa.pub"
 task :confirm_sshkey do
   target = "./roles/common/templates/id_rsa.pub"
   sshkey = "#{ENV['HOME']}/.ssh/id_rsa.pub"
@@ -56,6 +57,7 @@ end
 
 # Check http_proxy setting
 # Ask using default value or new one.
+desc "Check http_proxy setting"
 task :confirm_http_proxy do
   http_proxy = ENV["http_proxy"]
   vars_file = "group_vars/all"
@@ -99,13 +101,13 @@ task :dummy do
 end
 
 
-# Do ansible playbook
+desc "Run ansible playbook"
 task :install do
   sh "ansible-playbook -i hosts site.yml"
 end
 
 
-# Clean variables depend on user env
+desc "Clean variables and files depend on user env"
 task :clean do
   target = "./roles/common/templates/id_rsa.pub"
   FileUtils.rm_f(target)
