@@ -1,19 +1,16 @@
 ---
 # all
 
-user_name:
-ansible_ssh_pass:
-ansible_sudo_pass:
+remote_user: 
+ansible_ssh_pass: 
+ansible_sudo_pass: 
 http_proxy: 
 
 # hugepage_size is 2M or 1G
-hugepage_size: "2M"
-nr_hugepages_2mb: 512
-nr_hugepages_1gb: 2
-
-dpdk_interfaces: "04:00.0"
-
-dpdk_target: x86_64-ivshmem-linuxapp-gcc
+hugepage_size: 
+nr_hugepages: 
+dpdk_interfaces: 
+dpdk_target: 
 
 
 # Do not edit
