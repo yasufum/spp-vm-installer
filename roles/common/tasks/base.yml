@@ -1,10 +1,8 @@
 ---
-- name: install git and etc
+- name: install mandated packages
   become: yes
   apt: name={{ item }} state=present update_cache=yes
   with_items:
     - git
-    - vim
     - curl
     - wget
-    #- emacs

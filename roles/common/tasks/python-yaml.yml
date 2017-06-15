@@ -1,0 +1,4 @@
+---
+- name: install python-yaml
+  become: yes
+  apt: name=python-yaml state=present
