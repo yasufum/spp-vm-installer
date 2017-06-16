@@ -157,7 +157,7 @@ task :confirm_sshkey do
 
     if File.exists? sshkey
       print "> copy '#{sshkey}' to '#{target}'? [y/N]"
-      ans = gets.chop
+      ans = STDIN.gets.chop
       if ans.downcase == "y" or ans.downcase == "yes"
         FileUtils.mkdir_p("#{ENV['HOME']}/.ssh")
         FileUtils.copy(sshkey, target)
@@ -371,7 +371,7 @@ task :confirm_dpdk do
 
   # 3. Update group_vars/vhost
   update_var(
-    "group_vars/spp",
+    "group_vars/vhost",
     "dpdk_interfaces",
     target_params["dpdk_interfaces"],
     false
