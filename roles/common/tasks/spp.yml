@@ -6,3 +6,8 @@
 
 - name: make spp
   command: make RTE_SDK={{ dpdk_dir }} RTE_TARGET={{ dpdk_target }} chdir={{ spp_dir }}
+
+- name: put start_spp_vm.sh
+  copy: src=templates/start_spp_vm.sh
+        dest={{ spp_dir }}
+        mode=775
