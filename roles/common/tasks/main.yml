@@ -2,7 +2,7 @@
 - include: base.yml
 - include: misc.yml
 - include: tmux.yml
-- include: dein.yml
+- include: vim.yml
 - include: hugepage-setup.yml
 - include: sshkey-setup.yml
 - include: sudo-without-pw.yml
