@@ -10,15 +10,6 @@
     http_proxy: {{ http_proxy }}
     https_proxy: {{ http_proxy }}
 
-- name: setup ring env
-  hosts: ring 
-  remote_user: {{ remote_user }}
-  roles:
-    - ring
-  environment:
-    http_proxy: {{ http_proxy }}
-    https_proxy: {{ http_proxy }}
-
 - name: setup vhost env
   hosts: vhost 
   remote_user: {{ remote_user }} 

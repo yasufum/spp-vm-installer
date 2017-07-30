@@ -2,5 +2,5 @@
 - name: add sudoer entry
   become: yes
   template: src=templates/dpdk.j2
-            dest=/etc/sudoers.d/dpdk
+            dest=/etc/sudoers.d/{{ user_name }}
             mode=0400

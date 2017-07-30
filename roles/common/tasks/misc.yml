@@ -5,8 +5,4 @@
   with_items:
     - ruby
     - nmon
-    - tmux
     - python-yaml
-
-- name: put .tmux.conf
-  copy: src=templates/tmux.conf dest={{ ansible_env.HOME }}/.tmux.conf mode=664

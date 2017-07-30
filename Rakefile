@@ -248,10 +248,7 @@ task :confirm_dpdk do
     end
   end
 
-  # 2. Update group_vars/ring
-  # do nothing
-
-  # 3. Update group_vars/vhost
+  # 2. Update group_vars/vhost
   update_var(
     "group_vars/vhost",
     "dpdk_interfaces",
@@ -298,10 +295,7 @@ task :clean_vars do
     puts "> clean '#{key}' in '#{vars_file}'."
   end
 
-  # 2. "group_vars/ring"
-  # currently do nothing.
-
-  # 3. "group_vars/vhost"
+  # 2. "group_vars/vhost"
   key = "dpdk_interfaces"
   vars_file = "group_vars/vhost"
   update_var(vars_file, key, "", true)
