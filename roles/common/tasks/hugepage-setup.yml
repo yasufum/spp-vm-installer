@@ -1,7 +1,7 @@
 ---
-- name: set hugepages size
-  become: yes
-  command: sh -c "echo {{ nr_hugepages_2mb }} > /sys/kernel/mm/hugepages/hugepages-2048kB/nr_hugepages"
+#- name: set hugepages size
+#  become: yes
+#  command: sh -c "echo {{ nr_hugepages_2mb }} > /sys/kernel/mm/hugepages/hugepages-2048kB/nr_hugepages"
 
 #- name: fstab
 #  replace:
@@ -21,7 +21,7 @@
   replace:
     dest=/etc/default/grub
     regexp='^GRUB_CMDLINE_LINUX="(?!hugepages=)'
-    replace='GRUB_CMDLINE_LINUX="hugepages={{ nr_hugepages_2mb }}'
+    replace='GRUB_CMDLINE_LINUX="hugepages={{ nr_hugepages }}'
   become: yes
 
 - name: set grub hugepage 1GB 
@@ -29,7 +29,7 @@
   replace:
     dest=/etc/default/grub
     regexp='^GRUB_CMDLINE_LINUX="(?!default_hugepagesz=)'
-    replace='GRUB_CMDLINE_LINUX="default_hugepagesz=1G hugepagesz=1G hugepages={{ nr_hugepages_1gb }}'
+    replace='GRUB_CMDLINE_LINUX="default_hugepagesz=1G hugepagesz=1G hugepages={{ nr_hugepages }}'
   become: yes
 
 - name: update grub
