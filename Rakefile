@@ -217,34 +217,6 @@ task :confirm_dpdk do
       else
         target_params[param] = yaml[param]
       end
-  
-    when "dpdk_target"
-      if yaml["dpdk_target"] == nil
-        puts "> dpdk_target (must be '(i)vshmem' for SPP or '(n)ative'):"
-        ans = ""
-        while not (ans == "ivshmem" or ans == "native")
-          ans = STDIN.gets.chop
-          if ans == "i"
-            ans = "ivshmem"
-          elsif ans == "n"
-            ans = "native"
-          end
-          if not (ans == "ivshmem" or ans == "native")
-            puts "> Error! Invalid parameter."
-            puts "> dpdk_target (must be 'ivshmem' for SPP or 'native'):"
-          end
-        end
-        if ans == "ivshmem"
-          dpdk_tgt = "x86_64-ivshmem-linuxapp-gcc"
-        else
-          dpdk_tgt = "x86_64-native-linuxapp-gcc"
-        end
-        #puts "dpdk_target: #{dpdk_tgt}"
-        update_var(vars_file, "dpdk_target", dpdk_tgt, false)
-        target_params[param] = dpdk_tgt
-      else
-        target_params[param] = yaml[param]
-      end
     end
   end
 

@@ -3,12 +3,12 @@
 
 - name: apply all base packages
   hosts: all
-  remote_user: {{ remote_user }} 
+  remote_user: "{{ remote_user }}" 
   roles:
     - common
 
 - name: setup vhost env
   hosts: vhost 
-  remote_user: {{ remote_user }}
+  remote_user: "{{ remote_user }}"
   roles:
     - vhost
