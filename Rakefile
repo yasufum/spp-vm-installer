@@ -132,8 +132,7 @@ desc "Setup DPDK params (hugepages and network interfaces)"
 task :confirm_dpdk do
   # There are three vars_files including params related to DPDK.
   #   1. group_vars/all
-  #   2. group_vars/ring (currently do nothing)
-  #   3. group_vars/vhost (currently do nothing)
+  #   2. group_vars/vhost (currently do nothing)
   # In this task, setup all of files by asking user some questions and update
   # vars_files. 
   # Skip updating if vars_files are already setup.

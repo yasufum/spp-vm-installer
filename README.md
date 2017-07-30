@@ -26,8 +26,8 @@ SPP is a patch panel like
 switching function for Inter-VM communication.
 
 Supported versions:
-- DPDK v16.07 
-- SPP v16.07
+- DPDK v17.05 
+- SPP v17.05
 
 
 ## Installation
@@ -39,7 +39,7 @@ for building DPDK and other tools.
 
 Install ansible  >= 2.0 by following this
 [instruction](http://docs.ansible.com/ansible/intro_installation.html#installation).
-I've only tested version 2.0.1.0 but other versions might work.
+I've only tested version 2.0.0.2 but other versions might work.
 
 ### (2) ssh
 
@@ -97,8 +97,6 @@ This role installs following applications as defined in YAML files under
 All of entries are listed in "roles/common/tasks/main.yml" and comment out
 entries if you don't need to install from it.
 
-[TODO] Update package list
-
 - base.yml
   - git
   - curl
@@ -145,18 +143,12 @@ Configuration files which are also installed on target machines with the applica
 are included in "roles/common/templates.
 Change the configuration before run ansible if you need to.
 
-#### (2) ring role
+
+#### (2) vhost role
 
 Install and setup SPP for running secondary process with
-[IVSHMEM](http://dpdk.org/doc/guides-16.07/prog_guide/ivshmem_lib.html)
+[vhost](http://dpdk.org/doc/guides-17.05/prog_guide/vhost_lib.html)
 interface.
-
-#### (3) vhost role
-
-Install and setup SPP for running secondary process with
-[vhost](http://dpdk.org/doc/guides-16.07/prog_guide/vhost_lib.html)
-interface.
-
 
 
 ### Add user
@@ -174,16 +166,16 @@ You can also setup this params by running rake command as detailed in later.
 Create an account and add it as sudoer.
 
 ```
-$ sudo adduser dpdk1607
+$ sudo adduser dpdk1705
 
-$ sudo gpasswd -a dpdk1607 sudo
+$ sudo gpasswd -a dpdk1705 sudo
 ```
 
 Delete account by userdel if it's no need. You should add -r option to delete
 home directory.
 
 ```
-$ sudo userdel -r dpdk1607
+$ sudo userdel -r dpdk1705
 ```
 
 ### (Optional) Using Proxy
@@ -243,7 +235,7 @@ At first time you run rake, it asks you some questions for configuration.
 $ rake
 > input new remote_user.
 [type your account]
-> update 'remote_user' to 'dpdk1607' in 'group_vars/all'.
+> update 'remote_user' to 'dpdk1705' in 'group_vars/all'.
 > input new ansible_ssh_pass.
 [type your passwd]
 > update 'ansible_ssh_pass' to 'your_passwd' in 'group_vars/all'.
