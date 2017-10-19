@@ -2,7 +2,7 @@
 
 SEC_ID=$1
 
-sudo $(dirname $0)/src/vm/src/vm/x86_64-ivshmem-linuxapp-gcc/spp_vm \
+sudo $(dirname $0)/src/vm/x86_64-native-linuxapp-gcc/spp_vm \
   -c 0x03 \
   -n 4 \
   --proc-type=primary \
