@@ -148,8 +148,7 @@ task :confirm_dpdk do
   target_params = {
     "hugepage_size" => nil,
     "nr_hugepages" => nil,
-    "dpdk_interfaces" => nil,
-    "dpdk_target" => nil
+    "dpdk_interfaces" => nil
   }
 
   # Check if all params are filled for confirm vars_file is already setup
@@ -206,12 +205,15 @@ task :confirm_dpdk do
   
     when "dpdk_interfaces"
       if yaml["dpdk_interfaces"] == nil
-        #puts "> dpdk_interfaces (separate by space if two or more):"
-        #delim = " "  # input is separated with white spaces
-        #ans = STDIN.gets.chop
-        #nw_ifs = ans.split(delim).join(delim) # formatting by removing nouse chars
-        ##puts "nw interfaces: #{nw_ifs}"
-        nw_ifs = "0000:00:04.0"
+        puts "> dpdk_interfaces (separate by space if two or more, or empty to default):"
+        delim = " "  # input is separated with white spaces
+        ans = STDIN.gets.chop
+        nw_ifs = ans.split(delim).join(delim) # formatting by removing nouse chars
+        #puts "nw interfaces: #{nw_ifs}"
+	if nw_ifs == ""
+          nw_ifs = "0000:00:04.0"
+	end
+	puts "> dpdk_interfaces: #{nw_ifs}"
         update_var(vars_file, "dpdk_interfaces", nw_ifs, false)
         target_params[param] = nw_ifs
       else
@@ -257,8 +259,7 @@ task :clean_vars do
     "http_proxy",
     "hugepage_size",
     "nr_hugepages",
-    "dpdk_interfaces",
-    "dpdk_target"
+    "dpdk_interfaces"
   ]
   # remove ssh user account form vars file.
   vars_file = "group_vars/all"
