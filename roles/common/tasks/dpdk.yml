@@ -6,6 +6,10 @@
   become: yes
   apt: pkg=libarchive-dev update_cache=no state=present
 
+- name: install numa.h
+  become: yes
+  apt: pkg=libnuma-dev update_cache=no state=present
+
 - name: install build-essential
   become: yes
   apt: pkg=build-essential update_cache=no state=present

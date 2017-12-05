@@ -13,7 +13,7 @@ dpdk_interfaces:
 
 
 # Do not edit
-dpdk_ver: "v17.05"
+dpdk_ver: "v17.08"
 dpdk_target: "x86_64-native-linuxapp-gcc"
 
 dpdk_home: "{{ ansible_env.HOME }}/dpdk-home"

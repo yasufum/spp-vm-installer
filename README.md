@@ -26,8 +26,8 @@ SPP is a patch panel like
 switching function for Inter-VM communication.
 
 Supported versions:
-- DPDK v17.05 
-- SPP v17.05
+- DPDK v17.08
+- SPP v17.08
 
 
 ## Installation
@@ -147,7 +147,7 @@ Change the configuration before run ansible if you need to.
 #### (2) vhost role
 
 Install and setup SPP for running secondary process with
-[vhost](http://dpdk.org/doc/guides-17.05/prog_guide/vhost_lib.html)
+[vhost](http://dpdk.org/doc/guides-17.08/prog_guide/vhost_lib.html)
 interface.
 
 
@@ -166,16 +166,16 @@ You can also setup this params by running rake command as detailed in later.
 Create an account and add it as sudoer.
 
 ```
-$ sudo adduser dpdk1705
+$ sudo adduser dpdk1708
 
-$ sudo gpasswd -a dpdk1705 sudo
+$ sudo gpasswd -a dpdk1708 sudo
 ```
 
 Delete account by userdel if it's no need. You should add -r option to delete
 home directory.
 
 ```
-$ sudo userdel -r dpdk1705
+$ sudo userdel -r dpdk1708
 ```
 
 ### (Optional) Using Proxy
@@ -235,7 +235,7 @@ At first time you run rake, it asks you some questions for configuration.
 $ rake
 > input new remote_user.
 [type your account]
-> update 'remote_user' to 'dpdk1705' in 'group_vars/all'.
+> update 'remote_user' to 'dpdk1708' in 'group_vars/all'.
 > input new ansible_ssh_pass.
 [type your passwd]
 > update 'ansible_ssh_pass' to 'your_passwd' in 'group_vars/all'.
